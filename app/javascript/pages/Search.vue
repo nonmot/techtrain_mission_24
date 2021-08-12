@@ -38,14 +38,18 @@
         </div>
 
         <div class="flex mt-10 ">
-            <button class="flex-grow mr-3 text-center inline-flex text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded">検索</button>
-            <button class="flex-grow ml-3 text-center inline-flex text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded">詳細条件</button>
+            <button class="mr-3 inline-flex text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded" @click="search()">検索</button>
+            <button class="ml-3 inline-flex text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded">詳細条件</button>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    
+    methods: {
+        search() {
+            this.$router.push('/result')
+        }
+    }
 }
 </script>
