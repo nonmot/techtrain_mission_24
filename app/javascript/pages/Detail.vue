@@ -1,6 +1,6 @@
 <template>
     <div class="container px-5 mx-auto">
-        <h1 class="text-2xl">架空のアパート</h1>
+        <h1 class="text-2xl mt-10">架空のアパート</h1>
         <div class="rounded-lg mt-10 px-20 h-auto overflow-hidden">
             <img alt="content" class="object-cover object-center h-full w-full" src="~images/house.jpg">
         </div>
@@ -44,11 +44,34 @@
                 </tbody>
             </table>
         </div>
+
+        <h1 class="text-2xl mt-20">地図</h1>
+        <google-map />
     </div>
 </template>
 
 <script>
+import GoogleMap from '../components/GoogleMap.vue';
+
 export default {
-    
+    components: {
+        GoogleMap,
+    },
+    data() {
+        return {
+
+        }
+    },
+
+    computed: {
+        mapConfig() {
+            return {
+                center: {
+                    lat: 35.68944,
+                    lng: 139.69167
+                }
+            }
+        }
+    }
 }
 </script>

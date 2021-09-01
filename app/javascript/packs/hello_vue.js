@@ -10,8 +10,16 @@ import App from '../app.vue'
 import VueRouter from 'vue-router'
 import router from '../router'
 import '../css/tailwindcss.css'
+import * as VueGoogleMaps from 'vue2-google-maps';
 
 Vue.use(VueRouter);
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: gon.google_map_api_key,
+    libraries: 'places'
+  }
+});
 
 
 document.addEventListener('DOMContentLoaded', () => {

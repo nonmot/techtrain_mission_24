@@ -1,5 +1,5 @@
 <template>
-    <div class="h-full mt-10 shadow flex p-3 sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+    <div class="h-full mt-5 shadow flex p-3 sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
         <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src="https://dummyimage.com/200x200">
         <div class="flex-grow sm:pl-8">
             <h2 class="title-font font-medium text-lg text-gray-900 mb-5">架空のマンション</h2>
