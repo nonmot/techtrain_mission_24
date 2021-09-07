@@ -7,9 +7,13 @@
             </label>
             <div class="relative">
                 <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-                    <option>東京</option>
-                    <option>千葉</option>
-                    <option>神奈川</option>
+                    <option
+                        v-for="pref in prefectures"
+                        :key="pref.code"
+                        :v-model="selectedPref"
+                    >
+                        {{ pref.name }}
+                    </option>
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -17,19 +21,17 @@
             </div>
         </div>
 
-        <div class="mt-10 px-3">
+        <div class="mt-10 px-3" v-if="selectedPref">
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                 市区町村を選択
             </label>
         </div>
-        <div class="shadow p-3 w-full h-40 min-h-full">
-                <span class="ml-2">
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" class="form-checkbox">
-                        <span class="ml-2">千葉市中央区</span>
-                    </label>
-                </span>
-                <span class="ml-2">
+        <div class="shadow p-3 w-full h-40 min-h-full" v-if="selectedPref">
+                <span
+                    class="ml-3"
+                    v-for="i in 20"
+                    :key="i"    
+                >
                     <label class="inline-flex items-center">
                         <input type="checkbox" class="form-checkbox">
                         <span class="ml-2">千葉市中央区</span>
@@ -45,7 +47,16 @@
 </template>
 
 <script>
+import prefectures from '../services/prefectures.json'
+
 export default {
+    data() {
+        return {
+            prefectures: prefectures,
+            selectedPref: null,
+        }
+    },
+    
     methods: {
         search() {
             this.$router.push('/result')

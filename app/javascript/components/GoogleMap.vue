@@ -6,7 +6,7 @@
             zoomControl: true
         }"
         map-type-id="terrain"
-        style="width: 500px; height: 300px"
+        style="width: 100%; height: 400px;"
         >
         <GmapMarker
             :key="index"
@@ -33,11 +33,27 @@ export default {
             markers: [{
                 position: {lat: 35.6263997, lng:140.1013924}
             }],
-            info: [{
-                name: 'スーパー',
-                position: {lat: 35.6219452, lng: 140.1025231}
-            }]
+            info: [
+                {
+                    name: '西友西千葉店',
+                    position: {lat: 35.6219452, lng: 140.1025231}
+                },
+                {
+                    name: '西千葉駅',
+                    position: {lat: 35.62270637, lng: 140.10318415}
+                },
+                {
+                    name: 'ファミリーマート西千葉駅前店',
+                    position: {lat: 35.6233176, lng: 140.1034995}
+                }
+            ]
         }
     }
 }
 </script>
+
+<style scoped>
+    .google-map {
+        width: 100%;
+    }
+</style>
