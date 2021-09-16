@@ -6,11 +6,16 @@
                 都道府県を選択
             </label>
             <div class="relative">
-                <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                <select
+                    class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    id="grid-state"
+                    v-model="selectedPref"
+                    @change="getMunicipalities"
+                >
                     <option
                         v-for="pref in prefectures"
                         :key="pref.code"
-                        :v-model="selectedPref"
+                        :value="pref.code"
                     >
                         {{ pref.name }}
                     </option>
@@ -26,15 +31,15 @@
                 市区町村を選択
             </label>
         </div>
-        <div class="shadow p-3 w-full h-40 min-h-full" v-if="selectedPref">
+        <div class="shadow p-3 w-full h-40 min-h-full" v-if="municipalities">
                 <span
                     class="ml-3"
-                    v-for="i in 20"
-                    :key="i"    
+                    v-for="municipality in municipalities"
+                    :key="municipality.id"    
                 >
                     <label class="inline-flex items-center">
                         <input type="checkbox" class="form-checkbox">
-                        <span class="ml-2">千葉市中央区</span>
+                        <span class="ml-2">{{ municipality.name }}</span>
                     </label>
                 </span>
         </div>
@@ -48,18 +53,30 @@
 
 <script>
 import prefectures from '../services/prefectures.json'
+import axios from 'axios'
 
 export default {
     data() {
         return {
-            prefectures: prefectures,
-            selectedPref: null,
+            prefectures: prefectures, //都道府県の情報
+            selectedPref: null,　// 選択された都道府県のコード
+            municipalities: null, //市区町村の情報
         }
     },
     
     methods: {
+        // 条件を指定して物件を検索
         search() {
             this.$router.push('/result')
+        },
+        // 市区町村を取得
+        getMunicipalities() {
+            var code = this.selectedPref
+            axios.get("https://www.land.mlit.go.jp/webland/api/CitySearch?area="+code)
+            .then(response => {
+                this.municipalities = response.data.data
+                console.log(response)
+            })
         }
     }
 }
